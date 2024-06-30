@@ -1,12 +1,15 @@
 import type { Config } from "tailwindcss";
 import colors from "tailwindcss/colors";
-
+/** @type {import('tailwindcss').Config} */
 const config: Config = {
+  important: true,
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx,html}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx,html}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx,html}",
     "./src/app/[locale]/*.{js,ts,jsx,tsx,mdx,html}",
+    "./src/app/*.{js,ts,jsx,tsx,mdx,html}",
+    "./src/app/**.{js,ts,jsx,tsx,mdx,html}",
   ],
   darkMode: "class",
   theme: {

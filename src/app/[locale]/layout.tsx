@@ -1,5 +1,5 @@
 import '@/app/globals.css';
-import "../../../build.css"
+// import "../../../build.css"
 
 
 

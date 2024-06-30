@@ -12,6 +12,18 @@
   .text-balance {
     text-wrap: balance;
   }
+  .bg-primaryBg {
+    background-color: theme('colors.primaryBg');
+  }
+  .bg-secondaryBg {
+    background-color: theme('colors.secondaryBg');
+  }
+  .text-secondaryText {
+    background-color: theme('colors.secondaryText');
+  }
+  .text-primaryText {
+    color: theme('colors.primaryText');
+  }
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
