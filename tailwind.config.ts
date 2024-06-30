@@ -3,11 +3,10 @@ import colors from "tailwindcss/colors";
 
 const config: Config = {
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/[locale]/*.{js,ts,jsx,tsx,mdx}",
-
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx,html}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx,html}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx,html}",
+    "./src/app/[locale]/*.{js,ts,jsx,tsx,mdx,html}",
   ],
   darkMode: "class",
   theme: {
@@ -38,7 +37,7 @@ const config: Config = {
       colors: {
         primaryBg: "#f8f8f8",
         secondaryBg: "#fd5564",
-        thirdBg:"#424242",
+        thirdBg: "#424242",
         primaryText: "#000000",
         secondaryText: "#f8f8f8",
         btnBg: "f8f8f8",
@@ -72,7 +71,7 @@ const config: Config = {
           light: "#F0F2F9",
         },
         red: {
-          light: "#f87c7c"
+          light: "#f87c7c",
         },
         boxShadow: {
           signUp: "0px 5px 10px rgba(4, 10, 34, 0.2)",
