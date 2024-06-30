@@ -74,7 +74,7 @@ const SearchInjury: React.FC = () => {
 
   return (
     <div className="text-right mt-10" dir="rtl">
-      <h2 className="text-center">הקישו את הפציעה</h2>
+      <h2 className="text-center">חפשו את הפציעה</h2>
       <div className="flex justify-center my-5">
         <input
           className="border border-black rounded p-1 text-right "
