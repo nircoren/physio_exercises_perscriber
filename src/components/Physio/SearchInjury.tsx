@@ -32,8 +32,8 @@ const SearchInjury: React.FC = () => {
       setLoading(true);
       axios
         .get<SearchResult>(
-          `http://localhost:8082/api/getExercises?injury=${inputValue}`
-          // `http://65.109.160.94:8082/api/getExercises?injury=${inputValue}`
+          // `http://localhost:8082/api/getExercises?injury=${inputValue}`
+          `http://65.109.160.94:8082/api/getExercises?injury=${inputValue}`
         )
         .then((response) => {
           setResults(response.data);
