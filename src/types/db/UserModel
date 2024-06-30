@@ -1,0 +1,8 @@
+import { DateTime } from "next-auth/providers/kakao";
+
+export type UserModel = {
+  id: number;
+  username: string;
+  email: string;
+  createdAt: DateTime; // This might be a computed property, not directly stored in the database
+};
