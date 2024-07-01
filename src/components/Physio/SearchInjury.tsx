@@ -98,7 +98,7 @@ const SearchInjury: React.FC = () => {
     return results.exercises
       .map(
         (exercise,idx) =>
-          `${idx}. ${exercise.exerciseName.he}:\n${exercise.exerciseDescription} ${exercise.youtubeVideoId ? `\nלסרטון: https://www.youtube.com/watch?v=${exercise.youtubeVideoId}\n`: '\n'}`
+          `${idx + 1}. ${exercise.exerciseName.he}:\n${exercise.exerciseDescription} ${exercise.youtubeVideoId ? `\nלסרטון: https://www.youtube.com/watch?v=${exercise.youtubeVideoId}\n`: '\n'}`
       )
       .join("\n");
   };
@@ -134,7 +134,7 @@ const SearchInjury: React.FC = () => {
       </div>
       {results.exercises.length > 0 && (
         <div className="text-center">
-          <p>ניתן לערוך את הטקסט בתרגילים עצמם. אם תרגיל לא רלוונטי אפשר ללחוץ על X כדי למחוק אותו</p>
+          <p>ניתן לערוך את הטקסט בתרגילים עצמם. אם תרגיל לא רלוונטי אפשר ללחוץ על X כדי למחוק אותו.</p>
           <div className="flex justify-center my-8">
             <button
               className="flex items-center justify-center border rounded px-4 py-2 bg-green-500 text-white hover:bg-green-600"
