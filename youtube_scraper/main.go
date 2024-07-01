@@ -72,7 +72,7 @@ func getExercisesHandler(w http.ResponseWriter, r *http.Request) {
 	for key, exercise := range result.Exercises {
 		videoID, err := youtube.GetFirstVideoID(exercise.ExerciseName.En)
 		if err != nil {
-			log.Printf("Error getting video ID for %s: %v", exercise, err)
+			log.Printf("Error getting video ID for %s: %v", exercise.ExerciseName.En, err)
 			continue
 		}
 		exercise.YoutubeVideoId = videoID

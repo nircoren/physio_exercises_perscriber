@@ -27,13 +27,12 @@ const SearchInjury: React.FC = () => {
   };
 
   const handleSearch = () => {
-    console.log('waasdasd')
     if (inputValue) {
+      debugger
       setLoading(true);
       axios
         .get<SearchResult>(
-          // `http://localhost:8082/api/getExercises?injury=${inputValue}`
-          `http://65.109.160.94:8082/api/getExercises?injury=${inputValue}`
+          `${process.env.NEXT_PUBLIC_BACKEND_SERVER_ADDRESS}/api/getExercises?injury=${inputValue}`
         )
         .then((response) => {
           setResults(response.data);
@@ -59,7 +58,7 @@ const SearchInjury: React.FC = () => {
     return results.exercises
       .map(
         (exercise) =>
-          `${exercise.exerciseName.he}:\n${exercise.exerciseDescription}\nWatch here: https://www.youtube.com/watch?v=${exercise.youtubeVideoId}\n`
+          `${exercise.exerciseName.he}:\n${exercise.exerciseDescription}\nלסרטון: https://www.youtube.com/watch?v=${exercise.youtubeVideoId}\n`
       )
       .join("\n");
   };
@@ -67,7 +66,7 @@ const SearchInjury: React.FC = () => {
   const handleShareOnWhatsApp = () => {
     const message = `Injury: ${
       results.injury
-    }\n\ תרגילים:http://65.109.160.94/ \n\n${formatExercisesForSharing()}`;
+    }\n\ תרגילים: \n\n${formatExercisesForSharing()}`;
     const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(
       message
     )}`;
