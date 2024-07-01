@@ -5,11 +5,8 @@ import ResultsGrid from "./ResultsGrid";
 import { Exercises } from "@/types/Exercises";
 
 export interface SearchResult {
-  // id: string;
-  // name: string;
   exercises: Exercises[];
-  injury?: string; // Add injury field
-  // Add more fields as needed
+  injury?: string;
 }
 
 const emptySearchResult: SearchResult = {
@@ -28,7 +25,6 @@ const SearchInjury: React.FC = () => {
 
   const handleSearch = () => {
     if (inputValue) {
-      debugger
       setLoading(true);
       axios
         .get<SearchResult>(
@@ -54,11 +50,55 @@ const SearchInjury: React.FC = () => {
     }
   };
 
+  const handleRemoveExercise = (index: number) => {
+    setResults((prevResults) => {
+      const updatedExercises = [...prevResults.exercises];
+      updatedExercises.splice(index, 1);
+      return { ...prevResults, exercises: updatedExercises };
+    });
+  };
+
+  const handleDescriptionChange = (index: number, newDescription: string) => {
+    setResults((prevResults) => {
+      const updatedExercises = [...prevResults.exercises];
+      updatedExercises[index] = {
+        ...updatedExercises[index],
+        exerciseDescription: newDescription,
+      };
+      return { ...prevResults, exercises: updatedExercises };
+    });
+  };
+
+  const handleRemoveVideo = (index: number) => {
+    setResults((prevResults) => {
+      const updatedExercises = [...prevResults.exercises];
+      updatedExercises[index] = {
+        ...updatedExercises[index],
+        youtubeVideoId: "",
+      };
+      return { ...prevResults, exercises: updatedExercises };
+    });
+  };
+
+  const handleNameChange = (index: number, newName: string) => {
+    setResults((prevResults) => {
+      const updatedExercises = [...prevResults.exercises];
+      updatedExercises[index] = {
+        ...updatedExercises[index],
+        exerciseName: {
+          ...updatedExercises[index].exerciseName,
+          he: newName,
+        },
+      };
+      return { ...prevResults, exercises: updatedExercises };
+    });
+  };
+
   const formatExercisesForSharing = () => {
     return results.exercises
       .map(
-        (exercise) =>
-          `${exercise.exerciseName.he}:\n${exercise.exerciseDescription}\nלסרטון: https://www.youtube.com/watch?v=${exercise.youtubeVideoId}\n`
+        (exercise,idx) =>
+          `${idx}. ${exercise.exerciseName.he}:\n${exercise.exerciseDescription} ${exercise.youtubeVideoId ? `\nלסרטון: https://www.youtube.com/watch?v=${exercise.youtubeVideoId}\n`: '\n'}`
       )
       .join("\n");
   };
@@ -75,7 +115,7 @@ const SearchInjury: React.FC = () => {
 
   return (
     <div className="text-right mt-10" dir="rtl">
-      <h2 className="text-center">חפשו את הפציעה</h2>
+      <h1 className="text-center text-xl">חפשו את הפציעה</h1>
       <div className="flex justify-center my-5">
         <input
           className="border border-black rounded p-1 text-right "
@@ -93,15 +133,17 @@ const SearchInjury: React.FC = () => {
         </button>
       </div>
       {results.exercises.length > 0 && (
-        <div className="flex justify-center my-8">
-          <button
-            className="flex items-center justify-center border rounded px-4 py-2 bg-green-500 text-white hover:bg-green-600"
-            onClick={handleShareOnWhatsApp}
-          >
-          <img src="whatsapp.png" className="w-7 ml-2" alt="" />
-
-            שיתוף בוואטסאפ
-          </button>
+        <div className="text-center">
+          <p>ניתן לערוך את הטקסט בתרגילים עצמם. אם תרגיל לא רלוונטי אפשר ללחוץ על X כדי למחוק אותו</p>
+          <div className="flex justify-center my-8">
+            <button
+              className="flex items-center justify-center border rounded px-4 py-2 bg-green-500 text-white hover:bg-green-600"
+              onClick={handleShareOnWhatsApp}
+            >
+              <img src="whatsapp.png" className="w-7 ml-2" alt="" />
+              שיתוף בוואטסאפ
+            </button>
+          </div>
         </div>
       )}
       {loading ? (
@@ -111,7 +153,13 @@ const SearchInjury: React.FC = () => {
       ) : (
         ""
       )}
-      <ResultsGrid exercises={results.exercises} />
+      <ResultsGrid
+        exercises={results.exercises}
+        onRemoveExercise={handleRemoveExercise}
+        onDescriptionChange={handleDescriptionChange}
+        onRemoveVideo={handleRemoveVideo}
+        onNameChange={handleNameChange}
+      />
     </div>
   );
 };

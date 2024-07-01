@@ -88,54 +88,56 @@ func getExercisesHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func test(w http.ResponseWriter, r *http.Request) {
-	jsontest := `{
+	jsontest := `
+	{
 "exercises": [
 {
 "exerciseName": {
-"en": "Nerve Gliding Exercise",
-"he": "תרגיל החלקת עצב"
+"en": "Quadriceps Stretch",
+"he": "מתיחת שרירי הירך הקדמיים"
 },
-"exerciseDescription": "שב עם הזרוע שלך ישרה לפניך וכף היד כלפי מעלה. כופף את המרפק שלך כדי להביא את כף היד לכיוון הפנים שלך, ואז ישר את המרפק בחזרה. חזור על התרגיל 10 פעמים.",
-"youtubeVideoId": "XP1yzpFR6ho"
-},
-{
-"exerciseName": {
-"en": "Wrist Flexor Stretch",
-"he": "מתיחת כופפי שורש כף היד"
-},
-"exerciseDescription": "עמוד עם זרועך ישרה לפניך וכף היד כלפי מטה. בעזרת היד השנייה, משוך בעדינות את כף היד כלפי מעלה כדי למתוח את כופפי שורש כף היד. החזק למשך 15-30 שניות וחזור 3 פעמים.",
-"youtubeVideoId": "ndDCV4Pi1lM"
+"exerciseDescription": "עמדו על רגל אחת, כופפו את הברך השנייה ואחזו בקרסול. משכו את הקרסול לכיוון הישבן עד שתרגישו מתיחה בשרירי הירך הקדמיים. החזיקו למשך 30 שניות וחזרו על הפעולה עם הרגל השנייה.",
+"youtubeVideoId": "l83s6t8VWsE"
 },
 {
 "exerciseName": {
-"en": "Wrist Extensor Stretch",
-"he": "מתיחת מיישרי שורש כף היד"
+"en": "Hamstring Stretch",
+"he": "מתיחת שרירי הירך האחוריים"
 },
-"exerciseDescription": "עמוד עם זרועך ישרה לפניך וכף היד כלפי מעלה. בעזרת היד השנייה, משוך בעדינות את כף היד כלפי מטה כדי למתוח את מיישרי שורש כף היד. החזק למשך 15-30 שניות וחזור 3 פעמים.",
-"youtubeVideoId": "ndDCV4Pi1lM"
-},
-{
-"exerciseName": {
-"en": "Elbow Flexion and Extension",
-"he": "כיפוף והארכת המרפק"
-},
-"exerciseDescription": "שב עם הזרוע שלך ישרה לפניך. כופף את המרפק כדי להביא את היד לכיוון הכתף שלך, ואז ישר את המרפק בחזרה. חזור על התרגיל 10 פעמים.",
-"youtubeVideoId": "cNbFI8Gft4A"
+"exerciseDescription": "שבו על הרצפה עם רגל אחת ישרה והשנייה מכופפת כך שכף הרגל נוגעת בירך הפנימית של הרגל הישרה. התכופפו קדימה לכיוון הרגל הישרה והחזיקו למשך 30 שניות. חזרו על הפעולה עם הרגל השנייה.",
+"youtubeVideoId": "cxyyEE4lCa0"
 },
 {
 "exerciseName": {
-"en": "Shoulder Shrugs",
-"he": "הרמת כתפיים"
+"en": "Calf Stretch",
+"he": "מתיחת שרירי השוק"
 },
-"exerciseDescription": "עמוד עם הכתפיים רפויות. הרם את הכתפיים כלפי מעלה לכיוון האוזניים שלך, ואז הורד אותן בחזרה. חזור על התרגיל 10 פעמים.",
-"youtubeVideoId": "vXIlcRTL1TQ"
+"exerciseDescription": "עמדו מול קיר, הניחו את הידיים על הקיר בגובה הכתפיים. כופפו רגל אחת קדימה והשנייה ישרה מאחור. דחפו את העקב של הרגל האחורית כלפי הרצפה עד שתרגישו מתיחה בשרירי השוק. החזיקו למשך 30 שניות וחזרו על הפעולה עם הרגל השנייה.",
+"youtubeVideoId": "mlNXJKRYklQ"
+},
+{
+"exerciseName": {
+"en": "Hip Flexor Stretch",
+"he": "מתיחת כופפי הירך"
+},
+"exerciseDescription": "כרעו על ברך אחת כאשר הרגל השנייה מכופפת לפניכם בזווית של 90 מעלות. דחפו את האגן קדימה עד שתרגישו מתיחה בכופפי הירך של הרגל האחורית. החזיקו למשך 30 שניות וחזרו על הפעולה עם הרגל השנייה.",
+"youtubeVideoId": "bDWeLkeCbBg"
+},
+{
+"exerciseName": {
+"en": "IT Band Stretch",
+"he": "מתיחת רצועת ה-IT"
+},
+"exerciseDescription": "עמדו עם רגל אחת חוצה את השנייה מאחור. התכופפו לצד הרגל הקדמית עד שתרגישו מתיחה בצד החיצוני של הירך. החזיקו למשך 30 שניות וחזרו על הפעולה עם הרגל השנייה.",
+"youtubeVideoId": "MO2ZNz03YEI"
 }
 ],
-"injury": "ulnar nerve"
+"injury": "runners knee"
 }`
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-	if err := json.NewEncoder(w).Encode(jsontest); err != nil {
+	_, err := w.Write([]byte(jsontest))
+	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 }
