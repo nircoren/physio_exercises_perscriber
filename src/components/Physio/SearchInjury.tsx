@@ -32,7 +32,7 @@ const SearchInjury: React.FC = () => {
       setLoading(true);
       axios
         .get<SearchResult>(
-          `${process.env.NEXT_PUBLIC_BACKEND_SERVER_ADDRESS}/api/getExercises?injury=${inputValue}`
+          `${process.env.NEXT_PUBLIC_BACKEND_SERVER_ADDRESS}api/getExercises?injury=${inputValue}`
         )
         .then((response) => {
           setResults(response.data);
