@@ -1,5 +1,4 @@
 /** @type {import('next').NextConfig} */
-console.log(process.env.NEXT_PUBLIC_BACKEND_SERVER_ADDRESS)
 const nextConfig = {
     async headers() {
         return [
@@ -11,7 +10,7 @@ const nextConfig = {
               // Allow for specific domains to have access or * for all
               {
                 key: "Access-Control-Allow-Origin",
-                value: "http://65.109.160.94/, https://www.youtube.com",
+                value: `${process.env.NEXT_PUBLIC_BACKEND_SERVER_ADDRESS}, https://www.youtube.com`,
                 // value: process.env.ALLOWED_ORIGIN,
               },
               // Allows for specific methods accepted
