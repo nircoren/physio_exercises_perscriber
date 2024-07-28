@@ -2,6 +2,7 @@ import '@/app/globals.css';
 // import "../../../build.css"
 import i18nConfig from "@/i18nConfig";
 import { dir } from "i18next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 
 export const metadata = {
@@ -21,6 +22,8 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning lang={locale} dir={dir(locale)}>
       <body>{children}</body>
+      <GoogleAnalytics gaId="G-LMY7WXP3LK" />
+  
     </html>
   )
 }
