@@ -3,6 +3,8 @@ import React, { useState, ChangeEvent, KeyboardEvent } from "react";
 import axios from "axios";
 import ResultsGrid from "./ResultsGrid";
 import { Exercises } from "@/types/Exercises";
+import { useTranslation } from "react-i18next";
+import initTranslations from "@/i18n";
 
 export interface SearchResult {
   exercises: Exercises[];
@@ -14,7 +16,9 @@ const emptySearchResult: SearchResult = {
   injury: "",
 };
 
-const SearchInjury: React.FC = () => {
+const SearchInjury = ({ locale }: any) => {
+  const { t } = useTranslation();
+
   const [inputValue, setInputValue] = useState<string>("");
   const [results, setResults] = useState<SearchResult>(emptySearchResult);
   const [loading, setLoading] = useState<boolean>(false);
@@ -28,7 +32,7 @@ const SearchInjury: React.FC = () => {
       setLoading(true);
       axios
         .get<SearchResult>(
-          `${process.env.NEXT_PUBLIC_BACKEND_SERVER_ADDRESS}api/getExercises?injury=${inputValue}`
+          `${process.env.NEXT_PUBLIC_BACKEND_SERVER_ADDRESS}api/getExercises?injury=${inputValue}&lang=${locale}`
         )
         .then((response) => {
           setResults(response.data);
@@ -98,7 +102,7 @@ const SearchInjury: React.FC = () => {
     return results.exercises
       .map(
         (exercise,idx) =>
-          `${idx + 1}. ${exercise.exerciseName.he}:\n${exercise.exerciseDescription} ${exercise.youtubeVideoId ? `\nלסרטון: https://www.youtube.com/watch?v=${exercise.youtubeVideoId}\n`: '\n'}`
+          `${idx + 1}. ${exercise.exerciseName[locale as "en" | "he"]}:\n${exercise.exerciseDescription} ${exercise.youtubeVideoId ? `\n ${t('hero:to_video')}: https://www.youtube.com/watch?v=${exercise.youtubeVideoId}\n`: '\n'}`
       )
       .join("\n");
   };
@@ -106,7 +110,7 @@ const SearchInjury: React.FC = () => {
   const handleShareOnWhatsApp = () => {
     const message = `Injury: ${
       results.injury
-    }\n\ תרגילים: \n\n${formatExercisesForSharing()}`;
+    }\n\ ${t("hero:exercises")} : \n\n${formatExercisesForSharing()}`;
     const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(
       message
     )}`;
@@ -114,34 +118,34 @@ const SearchInjury: React.FC = () => {
   };
 
   return (
-    <div className="text-right mt-10" dir="rtl">
-      <h1 className="text-center text-xl">חפשו את הפציעה</h1>
+    <div className="mt-10">
+      <h1 className="text-center text-xl">{t("hero:search_injury")}</h1>
       <div className="flex justify-center my-5">
         <input
-          className="border border-black rounded p-1 text-right "
+          className="border border-black rounded p-1"
           type="text"
           value={inputValue}
           onChange={handleInputChange}
           onKeyPress={handleKeyPress}
-          placeholder="חיפוש"
+          placeholder={t("hero:search")}
         />
         <button
-          className="border border-black rounded px-4 ml-2 hover:bg-gray-100"
+          className="border border-black rounded px-4 hover:bg-gray-100"
           onClick={handleSearch}
         >
-          חיפוש
+          {t('hero:search')}
         </button>
       </div>
       {results.exercises.length > 0 && (
         <div className="text-center">
-          <p>ניתן לערוך את הטקסט בתרגילים עצמם. אם תרגיל לא רלוונטי אפשר ללחוץ על X כדי למחוק אותו.</p>
+          <p>{t("hero:search_desc")}</p>
           <div className="flex justify-center my-8">
             <button
               className="flex items-center justify-center border rounded px-4 py-2 bg-green-500 text-white hover:bg-green-600"
               onClick={handleShareOnWhatsApp}
             >
-              <img src="whatsapp.png" className="w-7 ml-2" alt="" />
-              שיתוף בוואטסאפ
+              <img src="whatsapp.png" className="w-7 mr-2" alt="" />
+              {t("hero:share_on_whatsapp")}
             </button>
           </div>
         </div>
@@ -154,6 +158,7 @@ const SearchInjury: React.FC = () => {
         ""
       )}
       <ResultsGrid
+        locale={locale}
         exercises={results.exercises}
         onRemoveExercise={handleRemoveExercise}
         onDescriptionChange={handleDescriptionChange}

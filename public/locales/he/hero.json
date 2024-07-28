@@ -1,7 +1,12 @@
 {
-  "hero_title": "חלאס עם הנטפליקס, מגיע לכם לילה מהסרטים",
-  "app_desc": "שברו שגרה עם הפרטנר, חזקו את הקשר.",
-  "app_value_provided": "דייט שובר שגרה עם ",
-  "join_happy_couples": "93+ זוגות כבר נרשמו. מה איתכם?"
-
+  "hero_title": " \n Ditch Netflix, Ignite Your Night",
+  "search": "חיפוש",
+  "search_injury": "חפשו את הפציעה",
+  "search_desc": "ניתן לערוך את הטקסט בתרגילים עצמם. אם תרגיל לא רלוונטי אפשר ללחוץ על X כדי למחוק אותו.",
+  "share_on_whatsapp":"שיתוף בוואטסאפ",
+  "exercises":"תרגילים",
+  "to_video": "לסרטון",
+  "send_exercises_to_patients": "שליחת תרגילים למטופלים",
+  "remove_video": "הסרת סרטון",
+  "video_not_attached": "סרטון לא יצורף."
 }

@@ -1,6 +1,7 @@
 import '@/app/globals.css';
 // import "../../../build.css"
-
+import i18nConfig from "@/i18nConfig";
+import { dir } from "i18next";
 
 
 export const metadata = {
@@ -10,11 +11,15 @@ export const metadata = {
 
 export default function RootLayout({
   children,
-}: {
-  children: React.ReactNode
-}) {
+  params: { locale },
+}: Readonly<{
+  children: React.ReactNode;
+  params: {
+    locale: any;
+  };
+}>) {
   return (
-    <html lang="en">
+    <html suppressHydrationWarning lang={locale} dir={dir(locale)}>
       <body>{children}</body>
     </html>
   )

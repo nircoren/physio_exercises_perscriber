@@ -1,6 +1,12 @@
 {
   "hero_title": " \n Ditch Netflix, Ignite Your Night",
-  "app_desc": "A mobile app with fun and naughty games to play together and deepen your connection.",
-  "join_happy_couples": "{{couplesNumber}} happy couples already signed up. What about you?",
-  "email_to_early_access": "Email us to get the early access for ignight"
+  "search": "Search",
+  "search_injury": "Search Injury",
+  "search_desc": "If an exercise is irrelevant you can click on x to delete it. you can edit the text on the exercises.",
+  "share_on_whatsapp":"Share on Whatsapp",
+  "exercises":"Exercises",
+  "to_video": "to video",
+  "send_exercises_to_patients": "Send exercieses to patients",
+  "remove_video": "remove video",
+  "video_not_attached": "video not attached"
 }

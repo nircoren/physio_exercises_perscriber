@@ -1,7 +1,9 @@
 import React from "react";
 import { Exercises } from "@/types/Exercises";
+import { useTranslation } from "react-i18next";
 
 interface ResultsGridProps {
+  locale: string;
   exercises: Exercises[];
   onRemoveExercise: (index: number) => void;
   onDescriptionChange: (index: number, newDescription: string) => void;
@@ -10,12 +12,15 @@ interface ResultsGridProps {
 }
 
 const ResultsGrid: React.FC<ResultsGridProps> = ({
+  locale,
   exercises,
   onRemoveExercise,
   onDescriptionChange,
   onRemoveVideo,
   onNameChange,
 }) => {
+  const { t } = useTranslation();
+
   const handleDescriptionEdit = (
     event: React.FocusEvent<HTMLDivElement>,
     index: number
@@ -45,12 +50,12 @@ const ResultsGrid: React.FC<ResultsGridProps> = ({
           <p className="font-semibold text-lg mb-2">
             {idx + 1}.&nbsp;
             <div
-            className="inline"
+              className="inline"
               contentEditable
               onBlur={(event) => handleNameEdit(event, idx)}
               suppressContentEditableWarning={true}
             >
-               {exercise.exerciseName.he}
+              {exercise.exerciseName[locale as "en" | "he"]}
             </div>
           </p>
 
@@ -77,11 +82,11 @@ const ResultsGrid: React.FC<ResultsGridProps> = ({
                 className="absolute -bottom-10 right-0 p-1 px-2 bg-red-500 text-white rounded-full"
                 onClick={() => onRemoveVideo(idx)}
               >
-                הסרת סרטון
+          {t('hero:remove_video')}
               </button>
             </div>
           ) : (
-            <p className="">סרטון לא יצורף.</p>
+            <p className="">{t('hero:video_not_attached')}</p>
           )}
         </div>
       ))}
